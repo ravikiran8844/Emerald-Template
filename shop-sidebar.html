@@ -25,6 +25,24 @@
     <link rel="stylesheet" href="assets/css/vendor/base.css">
     <link rel="stylesheet" href="assets/css/style.min.css">
 
+  <!-- Include CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+
+<!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
+
+<!-- Include Select2 JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" defer></script>
+
+<style>
+    .select2-container{
+        height: 100%;
+    margin-bottom: 20px;
+    }
+    .select2 {
+        padding: 0;
+    }
+</style>
 </head>
 
 
@@ -180,8 +198,8 @@
 
                             <div class="">
                                 <h6 class="title">JEWELLERY TYPE</h6>
-                                <div class="single-sidebar-widget">
-                                    <select class="single-select">
+                                <div class="">
+                                    <select class="single-select project-dropdown" id="project-dropdown-1">
                                         <option disabled selected>SELECT</option>
 
                                         <option>GOLD</option>
@@ -195,10 +213,9 @@
 
                             <div class="">
                                 <h6 class="title">PROJECT</h6>
-                                <div class="single-sidebar-widget">
-                                    <select class="single-select">
+                                <div>
+                                    <select class="project-dropdown"  id="project-dropdown-2">
                                         <option disabled selected>SELECT</option>
-
                                         <option>CASTING</option>
                                         <option>CHAIN</option>
                                         <option>CHAIN MIX</option>
@@ -216,8 +233,8 @@
 
                             <div class="">
                                 <h6 class="title">CATEGORY</h6>
-                                <div class="single-sidebar-widget">
-                                    <select class="single-select">
+                                <div class="">
+                                    <select class="single-select project-dropdown" id="project-dropdown-3">
                                         <option disabled selected>SELECT</option>
 
                                         <option>ACCESSORIES</option>
@@ -241,8 +258,8 @@
 
                             <div class="">
                                 <h6 class="title">SUB CATEGORY</h6>
-                                <div class="single-sidebar-widget">
-                                    <select class="single-select">
+                                <div class="">
+                                    <select class="single-select project-dropdown" id="project-dropdown-4">
                                         <option disabled selected>SELECT</option>
                                         <option>BANGLE</option>
                                         <option>BRACLET</option>
@@ -994,6 +1011,13 @@
     <!-- Main JS -->
     <script src="assets/js/main.js"></script>
 
+ <script>
+    $(document).ready(function() {
+        $('.project-dropdown').select2();
+    });
+</script>
+
+    
 </body>
 
 
