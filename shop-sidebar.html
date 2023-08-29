@@ -200,7 +200,7 @@
                                 <h6 class="title">JEWELLERY TYPE</h6>
                                 <div class="">
                                     <select class="single-select project-dropdown" id="project-dropdown-1" multiple="multiple">
-                                        <option disabled selected>SELECT TYPE</option>
+                                        <!-- <option selected disabled>SELECT TYPE</option> -->
 
                                         <option>GOLD</option>
                                         <option>SILVER</option>
@@ -215,7 +215,7 @@
                                 <h6 class="title">PROJECT</h6>
                                 <div>
                                     <select class="project-dropdown"  id="project-dropdown-2" multiple="multiple">
-                                        <option disabled selected>SELECT PROJECT</option>
+                                        <!-- <option disabled selected>SELECT PROJECT</option> -->
                                         <option>CASTING</option>
                                         <option>CHAIN</option>
                                         <option>CHAIN MIX</option>
@@ -235,7 +235,7 @@
                                 <h6 class="title">CATEGORY</h6>
                                 <div class="">
                                     <select class="single-select project-dropdown" id="project-dropdown-3" multiple="multiple">
-                                        <option disabled selected>SELECT CATEGORY</option>
+                                        <!-- <option disabled selected>SELECT CATEGORY</option> -->
                                         <option>ACCESSORIES</option>
                                         <option>BANGLE</option>
                                         <option>BRACLET</option>
@@ -259,7 +259,7 @@
                                 <h6 class="title">SUB CATEGORY</h6>
                                 <div class="">
                                     <select class="single-select project-dropdown" id="project-dropdown-4" multiple="multiple">
-                                        <option disabled selected>SELECT SUB CATEGORY</option>
+                                        <!-- <option disabled>SELECT SUB CATEGORY</option> -->
                                         <option>BANGLE</option>
                                         <option>BRACLET</option>
                                         <option>CHAIN BRACLET</option>
@@ -1012,7 +1012,27 @@
 
  <script>
     $(document).ready(function() {
-        $('.project-dropdown').select2();
+        $('#project-dropdown-1').select2({
+    placeholder: "SELECT JEWELLERY TYPE",
+    allowClear: true
+});
+
+
+$('#project-dropdown-2').select2({
+    placeholder: "SELECT PROJECT",
+    allowClear: true
+});
+
+$('#project-dropdown-3').select2({
+    placeholder: "SELECT CATEGORY",
+    allowClear: true
+});
+
+
+$('#project-dropdown-4').select2({
+    placeholder: "SELECT SUB CATEGORY",
+    allowClear: true
+});
     });
 </script>
 
