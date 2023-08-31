@@ -48,6 +48,9 @@
     .select2-container input{
         height: auto;
     }
+    .select2-container--default .select2-selection--multiple .select2-selection__rendered li{
+        margin: 5px 0;
+    }
 </style>
 </head>
 
@@ -93,7 +96,7 @@
                     <div class="header-action">
                         <ul class="action-list">
                             <li class="axil-search d-xl-block d-none">
-                                <input type="search" class="placeholder product-search-input" name="search2" id="search2" value="" maxlength="128" placeholder="What are you looking for?" autocomplete="off">
+                                <input type="search" class="placeholder product-search-input" name="search2" id="search2" maxlength="128" placeholder="What are you looking for?" autocomplete="off">
                                 <button type="submit" class="icon wooc-btn-search">
                                     <i class="flaticon-magnifying-glass"></i>
                                 </button>
@@ -168,13 +171,13 @@
                             <h1 class="title">Explore All Products</h1>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-4">
+                    <!-- <div class="col-lg-6 col-md-4">
                         <div class="inner">
                             <div class="bradcrumb-thumb">
                                 <img src="assets/images/product/product-45.png" alt="Image">
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -274,10 +277,111 @@
                                 </div>
                             </div>
 
+
+
+
+
+                            
+                            <div class="">
+                                <h6 class="title">CONFIG</h6>
+                                <div class="">
+                                    <select class="single-select project-dropdown" id="project-dropdown-5" multiple="multiple">
+                                        <!-- <option disabled>SELECT SUB CATEGORY</option> -->
+                                        <option>18K-75.1</option>
+                                        <option>19K-79.2</option>
+                                        <option>20K-83.5</option>
+                                        <option>21K-87.5</option>
+                                        <option>21K-91.75</option>
+                                        <option>22K-91.75</option>
+                                        <option>24K-99.9</option>
+                                        <option>99.99-24K</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+
+                            
+                            <div class="">
+                                <h6 class="title">COLOR</h6>
+                                <div class="">
+                                    <select class="single-select project-dropdown" id="project-dropdown-6" multiple="multiple">
+                                        <!-- <option disabled>SELECT SUB CATEGORY</option> -->
+                                        <option>P</option>
+                                        <option>P/G</option>
+                                        <option>P/W</option>
+                                        <option>R</option>
+                                        <option>W/P<option>
+                                        <option>W/P/Y</option>
+
+
+                                    </select>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="">
+                                <h6 class="title">PRODUCT TYPE</h6>
+                                <div class="">
+                                    <select class="single-select project-dropdown" id="project-dropdown-7" multiple="multiple">
+                                        <option>option 1</option>
+                                        <option>option 2</option>
+                                        <option>option 3</option>
+ 
+
+
+                                    </select>
+                                </div>
+                            </div>
+
+
+
+
+                            <div class="">
+                                <h6 class="title">JEWELLERY SERIES</h6>
+                                <div class="">
+                                    <select class="single-select project-dropdown" id="project-dropdown-8" multiple="multiple">
+                                        <option>option 1</option>
+                                        <option>option 2</option>
+                                        <option>option 3</option>
+ 
+
+
+
+                                    </select>
+                                </div>
+                            </div>
+
+
+
+                            
+                            <div class="">
+                                <h6 class="title">COLLECTIONS</h6>
+                                <div class="">
+                                    <select class="single-select project-dropdown" id="project-dropdown-9" multiple="multiple">
+                                        <option>option 1</option>
+                                        <option>option 2</option>
+                                        <option>option 3</option>
+ 
+
+
+
+                                    </select>
+                                </div>
+                            </div>
                            
-                       
+                           
+<div class="mb-5">
+    <button class="axil-btn btn-bg-primary">Filter</button>
+
+</div>
+<div>
+    <button class="axil-btn btn-bg-secondary">Reset Filters</button>
+
+</div>
                
-                            <button class="axil-btn btn-bg-primary">All Reset</button>
                         </div>
                         <!-- End .axil-shop-sidebar -->
                     </div>
@@ -1037,6 +1141,26 @@ $('#project-dropdown-3').select2({
 
 $('#project-dropdown-4').select2({
     placeholder: "SELECT SUB CATEGORY",
+    allowClear: true
+});
+$('#project-dropdown-5').select2({
+    placeholder: "SELECT CONFIG",
+    allowClear: true
+});
+$('#project-dropdown-6').select2({
+    placeholder: "SELECT COLOR",
+    allowClear: true
+});
+$('#project-dropdown-7').select2({
+    placeholder: "SELECT PRODUCT TYPE",
+    allowClear: true
+});
+$('#project-dropdown-8').select2({
+    placeholder: "SELECT JEWELLERY SERIES",
+    allowClear: true
+});
+$('#project-dropdown-9').select2({
+    placeholder: "SELECT COLLECTIONS",
     allowClear: true
 });
     });
