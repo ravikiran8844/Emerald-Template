@@ -126,3 +126,24 @@ h5.product-meta-title {
   margin-bottom: 17px;
 }
 
+
+
+
+.header-brand a img{
+  max-height: 100px;
+}
+
+.axil-product .product-content .inner{
+  display: flex;
+    flex-direction: column;
+    text-align: center;
+
+}
+
+.axil-product {
+  border: 1px solid;
+  padding: 20px;
+}
+.axil-product select{
+  height: unset;
+}

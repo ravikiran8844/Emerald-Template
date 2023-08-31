@@ -158,113 +158,15 @@
         <div class="container my-5">
             <div class="row mb-5 d-none d-md-block">
                 <div class="col-12 d-flex gap-4 justify-content-end ">
-                    <div><button onclick="threeView()">3 view</button></div>
                     <div><button onclick="fourView()">4 view</button></div>
                     <div><button onclick="sixView()">6 view</button></div>
 
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-6 col-md-4 cart-grid-item mb-5">
-                    <div>
-                        <img class="img-fluid" src="assets/images/product/jewellery/product-6.png" alt="">
-                        <div>
-                            <div class="fs-3 fw-bold my-3">Product Title</div>
-                            <div class="lead mb-3">text</div>
-                    <div class="product-quantity" data-title="Qty">
-                        <div class="pro-qty">
-                            <input type="number" class="quantity-input" value="1">
-                        </div>
-                        </div>
-                        </div>
-
-                    </div>
-                </div>
+            <div class="row" id="cart-items-container">
+            
 
 
-                <div class="col-sm-6 col-md-4 cart-grid-item mb-5">
-                    <div>
-                        <img class="img-fluid" src="assets/images/product/jewellery/product.png" alt="">
-                        <div>
-                            <div class="fs-3 fw-bold my-3">Product Title</div>
-                            <div class="lead mb-3">text</div>
-                    <div class="product-quantity" data-title="Qty">
-                        <div class="pro-qty">
-                            <input type="number" class="quantity-input" value="1">
-                        </div>
-                        </div>
-                        </div>
-
-                    </div>
-                </div>
-
-
-                <div class="col-sm-6 col-md-4 cart-grid-item mb-5">
-                    <div>
-                        <img class="img-fluid" src="assets/images/product/jewellery/product-9.png" alt="">
-                        <div>
-                            <div class="fs-3 fw-bold my-3">Product Title</div>
-                            <div class="lead mb-3">text</div>
-                    <div class="product-quantity" data-title="Qty">
-                        <div class="pro-qty">
-                            <input type="number" class="quantity-input" value="1">
-                        </div>
-                        </div>
-                        </div>
-
-                    </div>
-                </div>
-                    
-
-                <div class="col-sm-6 col-md-4 cart-grid-item mb-5">
-                    <div>
-                        <img class="img-fluid" src="assets/images/product/jewellery/product-1.png" alt="">
-                        <div>
-                            <div class="fs-3 fw-bold my-3">Product Title</div>
-                            <div class="lead mb-3">text</div>
-                    <div class="product-quantity" data-title="Qty">
-                        <div class="pro-qty">
-                            <input type="number" class="quantity-input" value="1">
-                        </div>
-                        </div>
-                        </div>
-
-                    </div>
-                </div>
-
-
-                <div class="col-sm-6 col-md-4 cart-grid-item mb-5">
-                    <div>
-                        <img class="img-fluid" src="assets/images/product/jewellery/product-2.png" alt="">
-                        <div>
-                            <div class="fs-3 fw-bold my-3">Product Title</div>
-                            <div class="lead mb-3">text</div>
-                    <div class="product-quantity" data-title="Qty">
-                        <div class="pro-qty">
-                            <input type="number" class="quantity-input" value="1">
-                        </div>
-                        </div>
-                        </div>
-
-                    </div>
-                </div>
-
-
-                <div class="col-sm-6 col-md-4 cart-grid-item mb-5">
-                    <div>
-                        <img class="img-fluid" src="assets/images/product/jewellery/product-3.png" alt="">
-                        <div>
-                            <div class="fs-3 fw-bold my-3">Product Title</div>
-                            <div class="lead mb-3">text</div>
-                    <div class="product-quantity" data-title="Qty">
-                        <div class="pro-qty">
-                            <input type="number" class="quantity-input" value="1">
-                        </div>
-                        </div>
-                        </div>
-
-                    </div>
-                </div>
              
             </div>  
 
@@ -420,7 +322,7 @@
 
 
         function applyView(viewClass) {
-        $('.cart-grid-item').removeClass('col-md-2 col-md-4 col-md-3');
+        $('.cart-grid-item').removeClass('col-md-2 col-md-3');
         $('.cart-grid-item').addClass(viewClass);
     }
 
@@ -428,15 +330,70 @@
         applyView('col-md-2');
     }
 
-    function threeView() {
-        applyView('col-md-4');
-    }
-
     function fourView() {
         applyView('col-md-3');
     }
     </script>
 
+
+
+
+<script>
+// Get the cart items from local storage
+const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+const cartContainer = document.getElementById("cart-items-container");
+
+cartItems.forEach(item => {
+    const cartItemDiv = document.createElement("div");
+    cartItemDiv.className = "col-sm-6 col-md-3 cart-grid-item mb-5";
+    cartItemDiv.innerHTML = `
+        <div class="axil-product">
+            <img src="assets/img/${item.productID.trim()}-L.jpg" alt="Product Images">
+            <div class="d-flex flex-column align-items-center">
+                <div class="fs-3 fw-bold my-3">${item.productID}</div>
+                <div class="product-quantity" data-title="Qty">
+                    <div class="pro-qty d-flex">
+                        <button class="quantity-change-btn minus">-</button>
+                        <input type="number" class="quantity-input" value="${item.quantity}">
+                        <button class="quantity-change-btn plus">+</button>
+                    </div>
+                </div>
+                <div>
+                    <button class="btn btn-primary update-quantity-btn mt-4">Update Quantity</button>
+                    </div>
+            </div>
+            
+        </div>
+    `;
+    cartContainer.appendChild(cartItemDiv);
+
+    const quantityInput = cartItemDiv.querySelector(".quantity-input");
+    const plusBtn = cartItemDiv.querySelector(".plus");
+    const minusBtn = cartItemDiv.querySelector(".minus");
+    const updateQuantityBtn = cartItemDiv.querySelector(".update-quantity-btn");
+
+    plusBtn.addEventListener("click", () => {
+        quantityInput.value = parseInt(quantityInput.value) + 1;
+    });
+
+    minusBtn.addEventListener("click", () => {
+        if (parseInt(quantityInput.value) > 1) {
+            quantityInput.value = parseInt(quantityInput.value) - 1;
+        }
+    });
+
+    updateQuantityBtn.addEventListener("click", () => {
+        const newQuantity = parseInt(quantityInput.value);
+        const index = cartItems.findIndex(cartItem => cartItem.productID === item.productID);
+        if (index !== -1) {
+            cartItems[index].quantity = newQuantity;
+            localStorage.setItem("cartItems", JSON.stringify(cartItems));
+            alert("Quantity updated!");
+        }
+    });
+});
+
+</script>
 </body>
 
 
