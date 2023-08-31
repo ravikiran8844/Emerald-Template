@@ -58,14 +58,9 @@
     /* .select2-container--default .select2-selection--multiple .select2-selection__rendered li{
         margin: 5px 0;
     } */
-    .pagination button{
-        height: 40px;
-        width: 40px;margin: 10px;
-    
-    }
-    .pagination .active{
-        background-color: #0d6efd;
-        color: #fff;
+    .product-image{
+        width: 100px;
+        height: 100px;
     }
 </style>
 </head>
@@ -407,7 +402,13 @@
                                 <div class="axil-shop-top mb--40">
                                     <div class="category-select align-items-center justify-content-lg-end justify-content-between">
                                         <!-- Start Single Select  -->
-                                        <span id="filter-results" class="filter-results">Showing 1-18 of 84 results</span>
+                                        <span class="filter-results">Showing 1-12 of 84 results</span>
+                                        <select class="single-select">
+                                            <option>Short by Latest</option>
+                                            <option>Short by Oldest</option>
+                                            <option>Short by Name</option>
+                                            <option>Short by Price</option>
+                                        </select>
                                         <!-- End Single Select  -->
                                     </div>
                                     <div class="d-lg-none">
@@ -417,21 +418,51 @@
                             </div>
                         </div>
                         <!-- End .row -->
-                        <div class="row" id="product-details">
-                          
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="axil-product product-style-one mb--30 d-flex flex-column flex-md-row justify-content-between align-items-center">
+                                    <div class="thumbnail product-image mb-4">
+                                        <a href="single-product.html">
+                                            <img src="assets/images/product/jewellery/product.png" alt="Product Images">
+                                        </a>
+                                        
 
-                        </div>
+                                    </div>
+<div class="d-flex flex-column flex-md-row align-items-center gap-4">
+    
+    <div class="d-flex align-items-center">
+        <label class="label-title me-2">SIZE:</label>
+        <select class="single-select">
+            <option selected>BX</option>
+            <option>CX</option>
+            <option>DX</option>
+        </select>
+    </div>
+
+    <div class="d-flex align-items-center">
+        <div class="label-title me-2">Quantity:</div>
+        <div class="product-quantity" data-title="Qty">
+            <div class="pro-qty">
+                <input type="number" class="quantity-input" value="1">
+            </div>
+        </div>
+
+    </div>
+
+   <div>
+    title
+   </div>
 
 
-                        
-                        <div class="pt--20">
-
-
-                            <div class="pagination d-flex justify-content-center " id="pagination">
-                                <!-- Pagination buttons will be dynamically added here -->
+    <div>
+        <button>Add to Cart</button>
+    </div>
+</div>
+                                </div>
                             </div>
-
-
+                        </div>
+                        <div class="text-center pt--20">
+                            <a href="#" class="axil-btn btn-bg-lighter btn-load-more">Load more</a>
                         </div>
                     </div>
                 </div>
@@ -548,148 +579,7 @@
     </footer>
     <!-- End Footer Area  -->
 
-    <!-- Product Quick View Modal Start -->
-    <div class="modal fade quick-view-product" id="quick-view-modal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="far fa-times"></i></button>
-                </div>
-                <div class="modal-body">
-                    <div class="single-product-thumb">
-                        <div class="row">
-                            <div class="col-lg-7 mb--40">
-                                <div class="row">
-                                    <div class="col-lg-10 order-lg-2">
-                                        <div class="single-product-thumbnail product-large-thumbnail axil-product thumbnail-badge zoom-gallery">
-                                            <div class="thumbnail">
-                                                <img src="assets/images/product/product-big-01.png" alt="Product Images">
-                                                <div class="label-block label-right">
-                                                    <div class="product-badget">20% OFF</div>
-                                                </div>
-                                                <div class="product-quick-view position-view">
-                                                    <a href="assets/images/product/product-big-01.png" class="popup-zoom">
-                                                        <i class="far fa-search-plus"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="thumbnail">
-                                                <img src="assets/images/product/product-big-02.png" alt="Product Images">
-                                                <div class="label-block label-right">
-                                                    <div class="product-badget">20% OFF</div>
-                                                </div>
-                                                <div class="product-quick-view position-view">
-                                                    <a href="assets/images/product/product-big-02.png" class="popup-zoom">
-                                                        <i class="far fa-search-plus"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="thumbnail">
-                                                <img src="assets/images/product/product-big-03.png" alt="Product Images">
-                                                <div class="label-block label-right">
-                                                    <div class="product-badget">20% OFF</div>
-                                                </div>
-                                                <div class="product-quick-view position-view">
-                                                    <a href="assets/images/product/product-big-03.png" class="popup-zoom">
-                                                        <i class="far fa-search-plus"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-2 order-lg-1">
-                                        <div class="product-small-thumb small-thumb-wrapper">
-                                            <div class="small-thumb-img">
-                                                <img src="assets/images/product/product-thumb/thumb-08.png" alt="thumb image">
-                                            </div>
-                                            <div class="small-thumb-img">
-                                                <img src="assets/images/product/product-thumb/thumb-07.png" alt="thumb image">
-                                            </div>
-                                            <div class="small-thumb-img">
-                                                <img src="assets/images/product/product-thumb/thumb-09.png" alt="thumb image">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-5 mb--40">
-                                <div class="single-product-content">
-                                    <div class="inner">
-                                        <div class="product-rating">
-                                            <div class="star-rating">
-                                                <img src="assets/images/icons/rate.png" alt="Rate Images">
-                                            </div>
-                                            <div class="review-link">
-                                                <a href="#">(<span>1</span> customer reviews)</a>
-                                            </div>
-                                        </div>
-                                        <h3 class="product-title">Serif Coffee Table</h3>
-                                        <span class="price-amount">$155.00 - $255.00</span>
-                                        <ul class="product-meta">
-                                            <li><i class="fal fa-check"></i>In stock</li>
-                                            <li><i class="fal fa-check"></i>Free delivery available</li>
-                                            <li><i class="fal fa-check"></i>Sales 30% Off Use Code: MOTIVE30</li>
-                                        </ul>
-                                        <p class="description">In ornare lorem ut est dapibus, ut tincidunt nisi pretium. Integer ante est, elementum eget magna. Pellentesque sagittis dictum libero, eu dignissim tellus.</p>
 
-                                        <div class="product-variations-wrapper">
-
-                                            <!-- Start Product Variation  -->
-                                            <div class="product-variation">
-                                                <h6 class="title">Colors:</h6>
-                                                <div class="color-variant-wrapper">
-                                                    <ul class="color-variant mt--0">
-                                                        <li class="color-extra-01 active"><span><span class="color"></span></span>
-                                                        </li>
-                                                        <li class="color-extra-02"><span><span class="color"></span></span>
-                                                        </li>
-                                                        <li class="color-extra-03"><span><span class="color"></span></span>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <!-- End Product Variation  -->
-
-                                            <!-- Start Product Variation  -->
-                                            <div class="product-variation">
-                                                <h6 class="title">Size:</h6>
-                                                <ul class="range-variant">
-                                                    <li>xs</li>
-                                                    <li>s</li>
-                                                    <li>m</li>
-                                                    <li>l</li>
-                                                    <li>xl</li>
-                                                </ul>
-                                            </div>
-                                            <!-- End Product Variation  -->
-
-                                        </div>
-
-                                        <!-- Start Product Action Wrapper  -->
-                                        <div class="product-action-wrapper d-flex-center">
-                                            <!-- Start Quentity Action  -->
-                                            <div class="pro-qty"><input type="text" value="1"></div>
-                                            <!-- End Quentity Action  -->
-
-                                            <!-- Start Product Action  -->
-                                            <ul class="product-action d-flex-center mb--0">
-                                                <li class="add-to-cart"><a href="cart.html" class="axil-btn btn-bg-primary">Add to Cart</a></li>
-                                                <li class="wishlist"><a href="wishlist.html" class="axil-btn wishlist-btn"><i class="far fa-heart"></i></a></li>
-                                            </ul>
-                                            <!-- End Product Action  -->
-
-                                        </div>
-                                        <!-- End Product Action Wrapper  -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Product Quick View Modal End -->
 
     <!-- Header Search Modal End -->
     <div class="header-search-modal" id="header-search-modal">
@@ -936,151 +826,6 @@ $('#project-dropdown-9').select2({
     });
 </script>
 
-
-
-
-
-
-
-
-<script>
-    function loadJSONFile(callback) {
-      const xhr = new XMLHttpRequest();
-      xhr.overrideMimeType("application/json");
-      xhr.open("GET", "./assets/products.json", true);
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4 && xhr.status === 200) {
-          callback(xhr.responseText);
-        }
-      };
-      xhr.send(null);
-    }
-    
-    function renderProductsPage(page, productData) {
-      const itemsPerPage = 18;
-      const startIndex = (page - 1) * itemsPerPage;
-  const endIndex = Math.min(startIndex + itemsPerPage, productData["Product details"].length);
-
-    
-      const productDetailsContainer = document.getElementById("product-details");
-      productDetailsContainer.innerHTML = "";
-    
-      for (let i = startIndex; i < endIndex; i++) {
-    const product = productData["Product details"][i];
-    const productDiv = document.createElement("div");
-    productDiv.innerHTML = `
-        <div class="">
-                                <div class="axil-product product-style-one mb--30">
-                                    <div class="thumbnail">
-                                        <a href="single-product1.html?productID=${product.productID}">
-                                            <img src="assets/img/${product.productID}-L.jpg" alt="Product Images">
-                                        </a>
-                                        
-                                     
-                                    </div>
-                                    <div class="product-content">
-                                        <div class="inner">
-                                            <div class="fs-2"><a href="single-product1.html?productID=${product.productID}">${product.productID}
-                                            </a></div>
-
-                                            <div style="width: 100px;">
-                                                <label class="label-title">SIZE:</label>
-                                                <select class="single-select">
-                                                    <option selected>${product.defaultStyle}</option>
-                                                    
-                                                </select>
-                                            </div>
-                                            <div class="product-quantity mt-4" data-title="Qty">
-                                                <label class="label-title">Quantity:</label>
-                                                <div class="pro-qty d-flex">
-                                                    <button type="button" class="decrement-btn">-</button>
-                                                    <input type="number" class="quantity-input" value="1">
-                                                    <button type="button" class="increment-btn">+</button>
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <button class="btn btn-lg fw-bold  btn-primary mt-4">Add to Cart</button>
-                                            </div>
-                                           
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-        `;
-        productDiv.classList.add("col-sm-6");
-
-        productDiv.classList.add("col-xl-4");
-
-        productDetailsContainer.appendChild(productDiv);
-      }
-    }
-    
-    function renderPagination(totalPages, currentPage) {
-  const paginationContainer = document.getElementById("pagination");
-  paginationContainer.innerHTML = "";
-
-  for (let i = 1; i <= totalPages; i++) {
-    const pageLink = document.createElement("button");
-    pageLink.textContent = i;
-    pageLink.type = "button";
-
-    // Create an event listener for each pagination button
-    pageLink.addEventListener("click", createPageClickListener(i, totalPages));
-
-    if (i === currentPage) {
-      pageLink.classList.add("active");
-    }
-
-    paginationContainer.appendChild(pageLink);
-  }
-}
-
-function createPageClickListener(page, totalPages) {
-  return function () {
-    loadJSONFile(jsonData => {
-      const productData = JSON.parse(jsonData);
-      renderProductsPage(page, productData);
-      renderPagination(totalPages, page);
-      updateFilterResults(page, totalPages);
-    });
-  };
-}
-
-function updateFilterResults(page, totalPages) {
-  const resultsSpan = document.getElementById("filter-results");
-  const itemsPerPage = 18;
-  const startIndex = (page - 1) * itemsPerPage + 1;
-  const endIndex = Math.min(startIndex + itemsPerPage - 1, totalPages * itemsPerPage);
-
-  resultsSpan.textContent = `Showing ${startIndex}-${endIndex} of ${totalPages * itemsPerPage} results`;
-}
-
-loadJSONFile(jsonData => {
-  const productData = JSON.parse(jsonData);
-  const totalPages = Math.ceil(productData["Product details"].length / 18); // 18 items per page
-  renderProductsPage(1, productData);
-  renderPagination(totalPages, 1);
-  updateFilterResults(1, totalPages);
-
-  const quantityInputs = document.querySelectorAll(".quantity-input");
-  quantityInputs.forEach(input => {
-    const incrementBtn = input.parentElement.querySelector(".increment-btn");
-    const decrementBtn = input.parentElement.querySelector(".decrement-btn");
-
-    incrementBtn.addEventListener("click", () => {
-      input.value = parseInt(input.value) + 1;
-    });
-
-    decrementBtn.addEventListener("click", () => {
-      if (parseInt(input.value) > 1) {
-        input.value = parseInt(input.value) - 1;
-      }
-    });
-  });
-});
-    </script>
-    
     
 </body>
 
