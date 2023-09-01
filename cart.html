@@ -173,7 +173,7 @@
             <div class="row">
                 <div class="col-12 mt-5">
                     <div class="float-end">
-                        <a class="axil-btn btn-bg-primary" href="/checkout.html">Proceed to Checkout</a>
+                        <a class="axil-btn btn-bg-primary" id="checkout-btn" href="/checkout.html">Proceed to Checkout</a>
                     </div>
                 </div>
 
@@ -337,63 +337,69 @@
 
 
 
-
 <script>
-// Get the cart items from local storage
-const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-const cartContainer = document.getElementById("cart-items-container");
+    // Get the cart items from local storage
+    const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    const cartContainer = document.getElementById("cart-items-container");
+    const checkoutButton = document.getElementById("checkout-btn");
 
-cartItems.forEach(item => {
-    const cartItemDiv = document.createElement("div");
-    cartItemDiv.className = "col-sm-6 col-md-3 cart-grid-item mb-5";
-    cartItemDiv.innerHTML = `
-        <div class="axil-product">
-            <img src="assets/img/${item.productID.trim()}-L.jpg" alt="Product Images">
-            <div class="d-flex flex-column align-items-center">
-                <div class="fs-3 fw-bold my-3">${item.productID}</div>
-                <div class="product-quantity" data-title="Qty">
-                    <div class="pro-qty d-flex">
-                        <button class="quantity-change-btn minus">-</button>
-                        <input type="number" class="quantity-input" value="${item.quantity}">
-                        <button class="quantity-change-btn plus">+</button>
+
+    if (cartItems.length === 0) {
+        cartContainer.innerHTML = "<p>No products added to cart.</p>";
+        checkoutButton.style.display = "none"; // Hide the checkout button
+
+    } else {
+        cartItems.forEach(item => {
+            const cartItemDiv = document.createElement("div");
+            cartItemDiv.className = "col-sm-6 col-md-3 cart-grid-item mb-5";
+            cartItemDiv.innerHTML = `
+                <div class="axil-product">
+                    <img src="assets/img/${item.productID.trim()}-L.jpg" alt="Product Images">
+                    <div class="d-flex flex-column align-items-center">
+                        <div class="fs-3 fw-bold my-3">${item.productID}</div>
+                        <div class="product-quantity" data-title="Qty">
+                            <div class="pro-qty d-flex">
+                                <button class="quantity-change-btn minus">-</button>
+                                <input type="number" class="quantity-input" value="${item.quantity}">
+                                <button class="quantity-change-btn plus">+</button>
+                            </div>
+                        </div>
+                        <div>
+                            <button class="btn btn-primary update-quantity-btn mt-4">Update Quantity</button>
+                        </div>
                     </div>
                 </div>
-                <div>
-                    <button class="btn btn-primary update-quantity-btn mt-4">Update Quantity</button>
-                    </div>
-            </div>
-            
-        </div>
-    `;
-    cartContainer.appendChild(cartItemDiv);
-
-    const quantityInput = cartItemDiv.querySelector(".quantity-input");
-    const plusBtn = cartItemDiv.querySelector(".plus");
-    const minusBtn = cartItemDiv.querySelector(".minus");
-    const updateQuantityBtn = cartItemDiv.querySelector(".update-quantity-btn");
-
-    plusBtn.addEventListener("click", () => {
-        quantityInput.value = parseInt(quantityInput.value) + 1;
-    });
-
-    minusBtn.addEventListener("click", () => {
-        if (parseInt(quantityInput.value) > 1) {
-            quantityInput.value = parseInt(quantityInput.value) - 1;
-        }
-    });
-
-    updateQuantityBtn.addEventListener("click", () => {
-        const newQuantity = parseInt(quantityInput.value);
-        const index = cartItems.findIndex(cartItem => cartItem.productID === item.productID);
-        if (index !== -1) {
-            cartItems[index].quantity = newQuantity;
-            localStorage.setItem("cartItems", JSON.stringify(cartItems));
-            alert("Quantity updated!");
-        }
-    });
-});
-
-</script>
+            `;
+            cartContainer.appendChild(cartItemDiv);
+    
+            const quantityInput = cartItemDiv.querySelector(".quantity-input");
+            const plusBtn = cartItemDiv.querySelector(".plus");
+            const minusBtn = cartItemDiv.querySelector(".minus");
+            const updateQuantityBtn = cartItemDiv.querySelector(".update-quantity-btn");
+    
+            plusBtn.addEventListener("click", () => {
+                quantityInput.value = parseInt(quantityInput.value) + 1;
+            });
+    
+            minusBtn.addEventListener("click", () => {
+                if (parseInt(quantityInput.value) > 1) {
+                    quantityInput.value = parseInt(quantityInput.value) - 1;
+                }
+            });
+    
+            updateQuantityBtn.addEventListener("click", () => {
+                const newQuantity = parseInt(quantityInput.value);
+                const index = cartItems.findIndex(cartItem => cartItem.productID === item.productID);
+                if (index !== -1) {
+                    cartItems[index].quantity = newQuantity;
+                    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+                    alert("Quantity updated!");
+                }
+            });
+        });
+    }
+    </script>
+    
 </body>
 
 
