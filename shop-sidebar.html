@@ -999,7 +999,7 @@ $('#project-dropdown-9').select2({
                                                 </div>
                                             </div>
                                             <div class="mt-3">
-                                                <button class="btn btn-lg fw-bold  btn-primary mt-4">Add to Cart</button>
+                                                <button class="btn btn-lg fw-bold  btn-primary mt-4 add-to-cart">Add to Cart</button>
                                             </div>
                                            
                                         </div>
@@ -1063,26 +1063,32 @@ loadJSONFile(jsonData => {
   renderPagination(totalPages, 1);
   updateFilterResults(1, totalPages);
 
-  const quantityInputs = document.querySelectorAll(".quantity-input");
-  quantityInputs.forEach(input => {
-    const incrementBtn = input.parentElement.querySelector(".increment-btn");
-    const decrementBtn = input.parentElement.querySelector(".decrement-btn");
+
+    const quantityInputs = document.querySelectorAll(".quantity-input");
+    quantityInputs.forEach(input => {
+    const incrementBtn = input.nextElementSibling;
+    const decrementBtn = input.previousElementSibling;
 
     incrementBtn.addEventListener("click", () => {
-      input.value = parseInt(input.value) + 1;
+        input.value = parseInt(input.value) + 1;
     });
 
     decrementBtn.addEventListener("click", () => {
-      if (parseInt(input.value) > 1) {
-        input.value = parseInt(input.value) - 1;
-      }
+        if (parseInt(input.value) > 1) {
+            input.value = parseInt(input.value) - 1;
+        }
     });
-  });
+});
+    
+
 });
 
 
+
+
+
 window.onload=()=>{
-    const addToCartButtons = document.querySelectorAll(".btn-primary");
+    const addToCartButtons = document.querySelectorAll(".add-to-cart");
 addToCartButtons.forEach(button => {
   button.addEventListener("click", addToCartClicked);
 });
