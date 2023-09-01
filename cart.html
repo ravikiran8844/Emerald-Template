@@ -45,10 +45,10 @@
             <div class="container">
                 <div class="header-navbar">
                     <div class="header-brand">
-                        <a href="shop-sidebar.html" class="logo logo-dark">
+                        <a href="index.html" class="logo logo-dark">
                             <img src="assets/img/emerald-logo.png" style="height: 100px;padding: 20px;" alt="Site Logo">
                         </a>
-                        <a href="shop-sidebar.html" class="logo logo-light">
+                        <a href="index.html" class="logo logo-light">
                             <img src="assets/img/emerald-logo.png" style="height: 100px;padding: 20px;" alt="Site Logo">
                         </a>
                     </div>
@@ -57,13 +57,13 @@
                         <nav class="mainmenu-nav">
                             <button class="mobile-close-btn mobile-nav-toggler"><i class="fas fa-times"></i></button>
                             <div class="mobile-nav-brand">
-                                <a href="shop-sidebar.html" class="logo">
+                                <a href="index.html" class="logo">
                                     <img src="assets/images/logo/logo.png" alt="Site Logo">
                                 </a>
                             </div>
                             <ul class="mainmenu">
                                 <li class="">
-                                    <a href="shop-sidebar.html">Shop</a></li>
+                                    <a href="index.html">Shop</a></li>
                                     <li><a href="cart.html">Cart</a></li>
                              </ul>
                         </nav>
@@ -82,17 +82,8 @@
                                     <i class="flaticon-magnifying-glass"></i>
                                 </a>
                             </li>
-                            <li class="wishlist">
-                                <a href="wishlist.html">
-                                    <i class="flaticon-heart"></i>
-                                </a>
-                            </li>
-                            <li class="shopping-cart">
-                                <a href="#" class="cart-dropdown-btn">
-                                    <span class="cart-count">3</span>
-                                    <i class="flaticon-shopping-cart"></i>
-                                </a>
-                            </li>
+                           
+                        
                             <li class="my-account">
                                 <a href="javascript:void(0)">
                                     <i class="flaticon-person"></i>
@@ -366,6 +357,7 @@
                         </div>
                         <div>
                             <button class="btn btn-primary update-quantity-btn mt-4">Update Quantity</button>
+                            <button class="btn btn-danger remove-item-btn mt-2">Remove</button>
                         </div>
                     </div>
                 </div>
@@ -387,6 +379,36 @@
                 }
             });
     
+
+
+            // Check if cartItems array is empty and hide the checkout button
+
+
+            const removeItemBtn = cartItemDiv.querySelector(".remove-item-btn");
+
+            removeItemBtn.addEventListener("click", () => {
+                // Find the index of the item to remove
+                const indexToRemove = cartItems.findIndex(cartItem => cartItem.productID === item.productID);
+
+                if (indexToRemove !== -1) {
+                    // Remove the item from the cartItems array
+                    cartItems.splice(indexToRemove, 1);
+
+                    // Update local storage with the updated cart items
+                    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+
+                    // Remove the cart item from the DOM
+                    cartContainer.removeChild(cartItemDiv);
+
+                    alert("Item removed from cart!");
+                }
+                if (cartItems.length === 0) {
+                        cartContainer.innerHTML = "<p>No products added to cart.</p>";
+                        checkoutButton.style.display = "none"; // Hide the checkout button
+
+                    }
+            });
+
             updateQuantityBtn.addEventListener("click", () => {
                 const newQuantity = parseInt(quantityInput.value);
                 const index = cartItems.findIndex(cartItem => cartItem.productID === item.productID);
