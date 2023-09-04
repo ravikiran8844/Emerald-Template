@@ -216,18 +216,34 @@
                                             </ul>
                                         </div>
                                         <div class="col-md-4 mb-4">
-                                            <h5 class="product-meta-title ">Gold Purity</h5>
+                                            <h5 class="product-meta-title ">Carat</h5>
                                             <ul class="text-dark fw-bold">
-                                                <li class="gold-purity">SIL-92.5</li> 
+                                                <li class="default-Carat">SIL-92.5</li> 
                                             </ul>
                                         </div>
 
                                         <div class="col-md-4 mb-4">
-                                            <h5 class="product-meta-title">Gold Type</h5>
+                                            <h5 class="product-meta-title">Color</h5>
                                             <ul class="text-dark fw-bold">
-                                                <li class=" gold-type">W</li> 
+                                                <li class=" default-color">W</li> 
                                             </ul>
                                         </div>
+
+
+                                        <div class="col-md-4 mb-4">
+                                            <h5 class="product-meta-title">Height</h5>
+                                            <ul class="text-dark fw-bold">
+                                                <li class="height">7</li> 
+                                            </ul>
+                                        </div>
+
+                                        <div class="col-md-4 mb-4">
+                                            <h5 class="product-meta-title">Width</h5>
+                                            <ul class="text-dark fw-bold">
+                                                <li class="width">7</li> 
+                                            </ul>
+                                        </div>
+
                                         <div class="col-md-4 mb-4">
                                             <h5 class="product-meta-title">Unit ID</h5>
                                             <ul class="text-dark fw-bold">
@@ -248,7 +264,11 @@
                                     </div>
 
 
-                                   
+                                   <div class="col-4">
+                                    <select class="variant-dropdown">
+                                        <option value="" selected>Select a variant</option>
+                                    </select>
+                                   </div>
                                     
             
                                   
@@ -551,12 +571,13 @@
             const subCategory = document.querySelector(".sub-category");
             const collections = document.querySelector(".collections");
             const subCollections = document.querySelector(".sub-collections");
-            const goldPurity = document.querySelector(".gold-purity");
-            const goldType = document.querySelector(".gold-type");
+            const defaultCarat = document.querySelector(".default-Carat");
+            const defaultColor = document.querySelector(".default-color");
             const unitID = document.querySelector(".unit-id");
             const productName = document.querySelector(".product-name");
             const productImage = document.querySelector(".product-image");
-
+            const heightEl = document.querySelector(".height");
+            const widthEl = document.querySelector(".width");
             productImage.src = `assets/img/${product.productID}-L.jpg`;
 
             // Populate the elements with the product data
@@ -567,19 +588,46 @@
             subCategory.textContent = product.subCategory;
             collections.textContent = product.crwColCode;
             subCollections.textContent = product.crwSubColCode;
-            goldPurity.textContent = product.defaultCarat;
-            goldType.textContent = product.defaultColor;
+            defaultCarat.textContent = product.defaultCarat;
+            defaultColor.textContent = product.defaultColor;
             unitID.textContent = product.unitID;
             productName.textContent = product.name;
+            heightEl.textContent = product.height;
+            widthEl.textContent = product.width;
         }
     }
 
     const queryParams = new URLSearchParams(window.location.search);
     const productID = queryParams.get("productID");
 
+    
+function populateVariantDropdown(productData, productID) {
+    const variantDropdown = document.querySelector(".variant-dropdown");
+
+    if (productData && productData["Variants Details"]) {
+        const variants = productData["Variants Details"].filter(variant => variant.productID === productID);
+        let optionsHTML = '';
+
+        for (const variant of variants) {
+            optionsHTML += `<option value="${variant.style}">${variant.style}</option>`;
+        }
+
+        variantDropdown.innerHTML = optionsHTML;
+    } else {
+        // If there are no variants available, you can hide or disable the dropdown.
+        variantDropdown.innerHTML = '<option value="" selected>No variants available</option>';
+        // You can add additional logic to hide or disable the dropdown as needed.
+    }
+}
+
+
+
+
     loadJSONFile(jsonData => {
         const productData = JSON.parse(jsonData);
         populateProductData(productData, productID);
+        populateVariantDropdown(productData, productID);
+
 
         // Quantity Input Button Functionality
         const quantityInput = document.getElementById("quantity-input");
