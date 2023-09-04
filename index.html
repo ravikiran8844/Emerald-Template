@@ -1041,6 +1041,7 @@ document.getElementById("filterButton").addEventListener("click", function () {
 
     // Render filtered products or show a message
     renderFilteredProducts(filteredProducts);
+   
   });
 });
 
@@ -1146,6 +1147,8 @@ console.log(filteredProducts);
     productDiv.classList.add("col-xl-4");
     productDetailsContainer.appendChild(productDiv);
   }
+  setupAddToCartButtons();
+setupQuantityInputs();
 })}
 
 // You can call this function with your filtered products and page number
@@ -1185,6 +1188,4 @@ document.getElementById("resetFiltersButton").addEventListener("click", function
     
 </body>
 
-
-<!-- Mirrored from new.axilthemes.com/demo/template/etrade/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 01 Aug 2023 06:00:49 GMT -->
 </html>
