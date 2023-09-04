@@ -541,6 +541,7 @@
 
     function populateProductData(productData, productID) {
         const product = productData["Product details"].find(item => item.productID === productID);
+        console.log(product);
 
         if (product) {
             const productTitle = document.querySelector(".product-title");

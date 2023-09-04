@@ -407,6 +407,10 @@
                             </div>
                         </div>
                         <!-- End .row -->
+
+
+
+
                         <div class="row" id="product-details">
                           
 
@@ -974,9 +978,9 @@ $('#project-dropdown-9').select2({
                                             </a></div>
 
                                             <div class="d-flex gap-2 mt-4">
-                                                <label class="label-title fw-bold">SIZE:</label>
+                                                <label class="label-title fw-bold">STYLE:</label>
                                                 <select class="single-select">
-                                                    <option selected>${product.defaultStyle}</option>
+                                                    ${generateVariantOptions(product.productID, productData)}
                                                     
                                                 </select>
                                             </div>
@@ -1004,6 +1008,19 @@ $('#project-dropdown-9').select2({
 
         productDetailsContainer.appendChild(productDiv);
       }
+    }
+
+
+
+    function generateVariantOptions(productID, productData) {
+        const variants = productData["Variants Details"].filter(variant => variant.productID === productID);
+        let optionsHTML = "";
+
+        for (const variant of variants) {
+            optionsHTML += `<option value="${variant.config}">${variant.config}</option>`;
+        }
+
+        return optionsHTML;
     }
     
     function renderPagination(totalPages, currentPage) {
@@ -1033,6 +1050,10 @@ function createPageClickListener(page, totalPages) {
       renderProductsPage(page, productData);
       renderPagination(totalPages, page);
       updateFilterResults(page, totalPages);
+      setupAddToCartButtons();
+      setupQuantityInputs();
+
+
     });
   };
 }
@@ -1056,22 +1077,8 @@ function setupAddToCartButtons() {
     });
 }
 
-// Call the function when the page loads
-window.onload = setupAddToCartButtons;
 
-
-
-loadJSONFile(jsonData => {
-  const productData = JSON.parse(jsonData);
-  const totalPages = Math.ceil(productData["Product details"].length / 18); // 18 items per page
-  renderProductsPage(1, productData);
-  renderPagination(totalPages, 1);
-  updateFilterResults(1, totalPages);
-
-     // Set up the Add to Cart button event listeners
-     setupAddToCartButtons();
-
-
+function setupQuantityInputs(){
     const quantityInputs = document.querySelectorAll(".quantity-input");
     quantityInputs.forEach(input => {
     const incrementBtn = input.nextElementSibling;
@@ -1087,6 +1094,25 @@ loadJSONFile(jsonData => {
         }
     });
 });
+}
+// Call the function when the page loads
+setupAddToCartButtons();
+setupQuantityInputs();
+
+
+
+loadJSONFile(jsonData => {
+  const productData = JSON.parse(jsonData);
+  const totalPages = Math.ceil(productData["Product details"].length / 18); // 18 items per page
+  renderProductsPage(1, productData);
+  renderPagination(totalPages, 1);
+  updateFilterResults(1, totalPages);
+
+     // Set up the Add to Cart button event listeners
+     setupAddToCartButtons();
+     setupQuantityInputs();
+
+
     
 
 });
