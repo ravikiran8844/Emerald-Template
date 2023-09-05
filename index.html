@@ -963,9 +963,15 @@ function addToCartClicked(event) {
   const productID = productDiv.querySelector(".fs-2 a").textContent;
   const quantity = parseInt(productDiv.querySelector(".quantity-input").value);
 
-  console.log(productID);
-  console.log(quantity);
+  // Disable the button during the "Adding" state
+  button.disabled = true;
+  button.textContent = "Adding...";
 
+  setTimeout(() => {
+    // Enable the button and reset its text to "Add to Cart" after 2-3 seconds
+    button.disabled = false;
+    button.textContent = "Add to Cart";
+  }, 2000); // Adjust the time delay (in milliseconds) as needed
 
   // Retrieve existing cart items from local storage
   let cartItems = localStorage.getItem("cartItems");
@@ -981,9 +987,6 @@ function addToCartClicked(event) {
 
   // Update local storage with the new cart items
   localStorage.setItem("cartItems", JSON.stringify(cartItems));
-
-  // Provide feedback to the user
-  alert("Item added to cart!");
 }
 
 

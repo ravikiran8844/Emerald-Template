@@ -623,64 +623,79 @@ function populateVariantDropdown(productData, productID) {
 
 
 
+loadJSONFile(jsonData => {
+    const productData = JSON.parse(jsonData);
+    populateProductData(productData, productID);
+    populateVariantDropdown(productData, productID);
 
-    loadJSONFile(jsonData => {
-        const productData = JSON.parse(jsonData);
-        populateProductData(productData, productID);
-        populateVariantDropdown(productData, productID);
+    // Quantity Input Button Functionality
+    const quantityInput = document.getElementById("quantity-input");
+    const incrementBtn = document.querySelector(".inc");
+    const decrementBtn = document.querySelector(".dec");
 
+    // Retrieve the quantity from local storage and set it as the initial value
+    const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    const existingCartItem = cartItems.find(item => item.productID === productID);
+    if (existingCartItem) {
+        quantityInput.value = existingCartItem.quantity;
+    } else {
+        quantityInput.value = 1; // Default to 1 if not in the cart
+    }
 
-        // Quantity Input Button Functionality
-        const quantityInput = document.getElementById("quantity-input");
-        const incrementBtn = document.querySelector(".inc");
-        const decrementBtn = document.querySelector(".dec");
+    incrementBtn.addEventListener("click", () => {
+        quantityInput.value = parseInt(quantityInput.value) + 1;
+    });
 
-        incrementBtn.addEventListener("click", () => {
-            quantityInput.value = parseInt(quantityInput.value) + 1;
-        });
+    decrementBtn.addEventListener("click", () => {
+        if (parseInt(quantityInput.value) > 1) {
+            quantityInput.value = parseInt(quantityInput.value) - 1;
+        }
+    });
 
-        decrementBtn.addEventListener("click", () => {
-            if (parseInt(quantityInput.value) > 1) {
-                quantityInput.value = parseInt(quantityInput.value) - 1;
+    // Add to Cart Button Functionality
+    const addToCartButton = document.getElementById("add-to-cart-button");
+    addToCartButton.addEventListener("click", () => {
+        const quantity = parseInt(quantityInput.value);
+
+        if (quantity >= 1) { // Ensure quantity is at least 1
+            // Get the cart items from local storage
+            const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+
+            // Check if the product already exists in the cart
+            const existingCartItem = cartItems.find(item => item.productID === productID);
+
+            if (existingCartItem) {
+                // If the product exists, update the quantity
+                existingCartItem.quantity += quantity;
+            } else {
+                // If the product does not exist, add it to the cart
+                cartItems.push({
+                    productID,
+                    quantity
+                });
             }
-        });
 
-        // Add to Cart Button Functionality
-        const addToCartButton = document.getElementById("add-to-cart-button");
-        addToCartButton.addEventListener("click", () => {
-            const quantity = parseInt(quantityInput.value);
+            // Save the updated cart items to local storage
+            localStorage.setItem("cartItems", JSON.stringify(cartItems));
 
-            if (quantity >= 1) { // Ensure quantity is at least 1
-                // Get the cart items from local storage
-                const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+            const addToCartButton = document.getElementById("add-to-cart-button");
 
-                // Check if the product already exists in the cart
-                const existingCartItem = cartItems.find(item => item.productID === productID);
+            // Change the button text to "Adding" for 2 seconds
+            addToCartButton.textContent = "Adding....";
+            addToCartButton.disabled = true;
 
-                if (existingCartItem) {
-                    // If the product exists, update the quantity
-                    existingCartItem.quantity += quantity;
-                } else {
-                    // If the product does not exist, add it to the cart
-                    cartItems.push({
-                        productID,
-                        quantity
-                    });
-                }
-
-                // Save the updated cart items to local storage
-                localStorage.setItem("cartItems", JSON.stringify(cartItems));
-
-                // Notify the user that the product was added to the cart (you can customize this)
-                alert("Product added to cart!");
-
+            setTimeout(() => {
+                addToCartButton.textContent = "Add to Cart";
+                addToCartButton.disabled = false;
                 // Redirect to the cart page (you can customize the URL)
                 window.location.href = "cart.html";
-            } else {
-                alert("Quantity must be at least 1.");
-            }
-        });
+            }, 2000);
+
+        } else {
+            alert("Quantity must be at least 1.");
+        }
     });
+});
 </script>
 
     

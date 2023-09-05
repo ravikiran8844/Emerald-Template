@@ -345,9 +345,13 @@
             cartItemDiv.className = "col-sm-6 col-md-3 cart-grid-item mb-5";
             cartItemDiv.innerHTML = `
                 <div class="axil-product">
+                    <a href="product.html?productID=${item.productID.trim()}">
                     <img src="assets/img/${item.productID.trim()}-L.jpg" alt="Product Images">
+                    </a>
                     <div class="d-flex flex-column align-items-center">
+                        <a href="product.html?productID=${item.productID.trim()}">
                         <div class="fs-3 fw-bold my-3">${item.productID}</div>
+                    </a>
                         <div class="product-quantity" data-title="Qty">
                             <div class="pro-qty d-flex">
                                 <button class="quantity-change-btn minus">-</button>
