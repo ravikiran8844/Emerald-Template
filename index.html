@@ -894,11 +894,11 @@ function createPageClickListener(page, totalPages) {
 
 function updateFilterResults(page, totalPages) {
   const resultsSpan = document.getElementById("filter-results");
-  const itemsPerPage = 18;
-  const startIndex = (page - 1) * itemsPerPage + 1;
-  const endIndex = Math.min(startIndex + itemsPerPage - 1, totalPages * itemsPerPage);
+//   const itemsPerPage = 18;
+//   const startIndex = (page - 1) * itemsPerPage + 1;
+//   const endIndex = Math.min(startIndex + itemsPerPage - 1, totalPages * itemsPerPage);
 
-  resultsSpan.textContent = `Showing ${startIndex}-${endIndex} of ${totalPages * itemsPerPage} results`;
+  resultsSpan.textContent = `Showing Page-${page} of ${totalPages} Pages`;
 }
 
 

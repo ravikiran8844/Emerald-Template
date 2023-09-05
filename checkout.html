@@ -284,48 +284,25 @@
                                         <thead>
                                             <tr>
                                                 <th>Product</th>
-                                                <th>Subtotal</th>
+                                                <th>Quantity</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr class="order-product">
-                                                <td>Commodo Blown Lamp <span class="quantity">x1</span></td>
-                                                <td>$117.00</td>
-                                            </tr>
-                                            <tr class="order-product">
-                                                <td>Commodo Blown Lamp <span class="quantity">x1</span></td>
-                                                <td>$198.00</td>
-                                            </tr>
-                                            <tr class="order-subtotal">
-                                                <td>Subtotal</td>
-                                                <td>$117.00</td>
-                                            </tr>
-                                            <tr class="order-shipping">
-                                                <td colspan="2">
-                                                    <div class="shipping-amount">
-                                                        <span class="title">Shipping Method</span>
-                                                        <span class="amount">$35.00</span>
-                                                    </div>
-                                                    <div class="input-group">
-                                                        <input type="radio" id="radio1" name="shipping" checked>
-                                                        <label for="radio1">Free Shippping</label>
-                                                    </div>
-                                                    <div class="input-group">
-                                                        <input type="radio" id="radio2" name="shipping">
-                                                        <label for="radio2">Local</label>
-                                                    </div>
-                                                    <div class="input-group">
-                                                        <input type="radio" id="radio3" name="shipping">
-                                                        <label for="radio3">Flat rate</label>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr class="order-total">
-                                                <td>Total</td>
-                                                <td class="order-total-amount">$323.00</td>
-                                            </tr>
+                                        <tbody id="cartTableBody">
+                                           
+                                    
+                                        
+                                          
                                         </tbody>
                                     </table>
+
+                                    <div class="shipping-amount mt-5 mb-3">
+                                        <span class="title h6 fw-bold">Shipping Method</span>
+                                        <!-- <span class="amount">$35.00</span> -->
+                                      </div>
+                                      <div class="input-group">
+                                        <input type="radio" id="radio1" name="shipping" checked>
+                                        <label for="radio1">Free Shipping</label>
+                                      </div>
                                 </div>
                                 <div class="order-payment-method">
                                     <div class="single-payment">
@@ -879,6 +856,38 @@
 
     <!-- Main JS -->
     <script src="assets/js/main.js"></script>
+    <script>
+        // Retrieve cart items from local storage
+        const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+      
+        // Get the table body where you want to display the cart items
+        const cartTableBody = document.getElementById("cartTableBody");
+      
+        // Loop through the cart items and create table rows for each item
+        cartItems.forEach(cartItem => {
+          const productID = cartItem.productID;
+          const quantity = cartItem.quantity;
+      
+          // Create a table row for the cart item
+          const row = document.createElement("tr");
+          row.classList.add("order-product");
+      
+          // Create the first table data cell with the product ID and quantity
+          const firstCell = document.createElement("td");
+          // Use innerHTML to render HTML tags
+          firstCell.innerHTML = `${productID}`;
+          row.appendChild(firstCell);
+      
+          // Create the second table data cell (you can replace "3" and "2" with your own data)
+          const secondCell = document.createElement("td");
+          // You can replace this with the actual price or any other data you want to display
+          secondCell.textContent = `${quantity}`; // Example: Replace with actual price
+          row.appendChild(secondCell);
+      
+          // Append the row to the cart table body
+          cartTableBody.appendChild(row);
+        });
+      </script>
 
 </body>
 
