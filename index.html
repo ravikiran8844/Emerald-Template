@@ -111,13 +111,13 @@
                     </div>
                     <div class="header-action">
                         <ul class="action-list">
-                            <li class="axil-search d-xl-block d-none">
+                            <!-- <li class="axil-search d-xl-block d-none">
                                 <input type="search" class="placeholder product-search-input" name="search2" id="search2" maxlength="128" placeholder="What are you looking for?" autocomplete="off">
                                 <button type="submit" class="icon wooc-btn-search">
                                     <i class="flaticon-magnifying-glass"></i>
                                 </button>
-                            </li>
-                            <li class="axil-search d-xl-none d-block">
+                            </li> -->
+                            <li class="axil-search d-block">
                                 <a href="javascript:void(0)" class="header-search-icon" title="Search">
                                     <i class="flaticon-magnifying-glass"></i>
                                 </a>
@@ -797,26 +797,26 @@ $('#project-dropdown-7').select2({
     
       for (let i = startIndex; i < endIndex; i++) {
     const product = productData["Product details"][i];
+    const productID = product.productID.trim();
     const productDiv = document.createElement("div");
     productDiv.innerHTML = `
         <div class="">
                                 <div class="axil-product product-style-one mb--30">
                                     <div class="thumbnail">
-                                        <a href="product.html?productID=${product.productID}">
-                                            <img src="assets/img/${product.productID}-L.jpg" alt="Product Images">
+                                        <a href="product.html?productID=${productID}">
+                                            <img src="assets/img/${productID}-L.jpg" alt="Product Images">
                                         </a>
                                         
                                      
                                     </div>
                                     <div class="product-content">
                                         <div class="inner">
-                                            <div class="fs-2"><a href="product.html?productID=${product.productID}">${product.productID}
-                                            </a></div>
+                                            <div class="fs-2"><a href="product.html?productID=${product.productID}">${product.productID}</a></div>
                                             <div>${product.weight} Gms</div>
 
                                             <div class="d-flex gap-2 mt-4">
                                                 <label class="label-title fw-bold">STYLE:</label>
-                                                <select class="single-select">
+                                                <select class="single-select item-style-select">
                                                     ${generateVariantOptions(product.productID, productData)}
                                                     
                                                 </select>
@@ -1131,7 +1131,7 @@ console.log(filteredProducts);
 
               <div class="d-flex gap-2 mt-4">
                 <label class="label-title fw-bold">STYLE:</label>
-                <select class="single-select">
+                <select class="single-select item-style-select">
                   ${generateVariantOptions(product.productID, productData)}
                 </select>
               </div>
