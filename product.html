@@ -28,6 +28,24 @@
     <link rel="stylesheet" href="assets/css/vendor/base.css">
     <link rel="stylesheet" href="assets/css/style.min.css">
 
+
+    <style>
+         /* Custom CSS to style the size options */
+         .size-box {
+            border: 2px solid #ccc;
+            padding: 10px;
+            margin-right: 10px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .size-box.active {
+            background-color: #007bff; /* Highlight active box with blue background */
+            color: #fff; /* Text color on active box */
+            border-color: #007bff; /* Border color on active box */
+        }
+    </style>
+
 </head>
 
 
@@ -258,10 +276,33 @@
                                         </div>
                                        
                                       
-
-
-                                    
                                     </div>
+                            
+
+                                
+                                    <div>
+                                        <h5 class="product-meta-title me-2">Size</h5>
+                                        <div class="d-flex gap-2 mb-4">
+                                            <div class="size-box active" onclick="selectSize(this, 1)">
+                                                option 1
+                                            </div>
+                                            <div class="size-box" onclick="selectSize(this, 2)">
+                                                option 2
+
+                                            </div>
+                                            <div class="size-box" onclick="selectSize(this,3)">
+                                                option 3
+                                            </div>
+                                            <div class="size-box" onclick="selectSize(this,4)">
+                                                option 4
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+
 
 
                                    <div class="col-3">
@@ -696,6 +737,23 @@ loadJSONFile(jsonData => {
         }
     });
 });
+
+
+
+
+
+function selectSize(element, size) {
+            // Remove 'active' class from all size boxes
+            const sizeBoxes = document.querySelectorAll('.size-box');
+            sizeBoxes.forEach(box => box.classList.remove('active'));
+
+            // Add 'active' class to the selected size box
+            element.classList.add('active');
+        }
+
+
+
+
 </script>
 
     
