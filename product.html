@@ -191,111 +191,18 @@
                                         <span class="price old-price">Rs 15,000/-</span>
                                         <span class="offer-badge">20% OFF</span>
                                     </div> -->
-                                    <div class="row mt-5">
-
-                                        <div class="col-md-4 mb-4">
-                                            <h5 class="product-meta-title ">Gross Weight</h5>
-                                            <ul class="text-dark fw-bold">
-                                                <li class="gross-weight">7.48 GMS</li> 
-                                            </ul>
-                                        </div>
-
-                                  
 
 
-                                        <div class="col-md-4 mb-4">
-                                            <h5 class="product-meta-title ">Project</h5>
-                                            <ul class="text-dark fw-bold">
-                                                <li class="project">SIL CASTING</li> 
-                                            </ul>
-                                        </div>
-                                        <div class="col-md-4 mb-4">
-                                            <h5 class="product-meta-title ">Category</h5>
-                                            <ul class="text-dark fw-bold">
-                                                <li class="category">STUD</li> 
-                                            </ul>
-                                        </div>
-                                        <div class="col-md-4 mb-4">
-                                            <h5 class="product-meta-title ">Sub-Category</h5>
-                                            <ul class="text-dark fw-bold">
-                                                <li class="sub-category">STUD DROPS</li> 
-                                            </ul>
-                                        </div>
-                                        <div class="col-md-4 mb-4">
-                                            <h5 class="product-meta-title ">Collections</h5>
-                                            <ul class="text-dark fw-bold">
-                                                <li class="collections">FANCY</li> 
-                                            </ul>
-                                        </div>
-                                        <div class="col-md-4 mb-4">
-                                            <h5 class="product-meta-title ">Sub-Collections</h5>
-                                            <ul class="text-dark fw-bold">
-                                                <li class="sub-collections">PEARL COLLECTION</li> 
-                                            </ul>
-                                        </div>
-                                        <div class="col-md-4 mb-4">
-                                            <h5 class="product-meta-title ">Purity</h5>
-                                            <ul class="text-dark fw-bold">
-                                                <li class="default-Carat">SIL-92.5</li> 
-                                            </ul>
-                                        </div>
-
-                                        <div class="col-md-4 mb-4">
-                                            <h5 class="product-meta-title">Color</h5>
-                                            <ul class="text-dark fw-bold">
-                                                <li class=" default-color">W</li> 
-                                            </ul>
-                                        </div>
 
 
-                                        <div class="col-md-4 mb-4">
-                                            <h5 class="product-meta-title">Height</h5>
-                                            <ul class="text-dark fw-bold">
-                                                <li class="height">7</li> 
-                                            </ul>
-                                        </div>
 
-                                        <div class="col-md-4 mb-4">
-                                            <h5 class="product-meta-title">Width</h5>
-                                            <ul class="text-dark fw-bold">
-                                                <li class="width">7</li> 
-                                            </ul>
-                                        </div>
-
-                                        <div class="col-md-4 mb-4">
-                                            <h5 class="product-meta-title">Unit ID</h5>
-                                            <ul class="text-dark fw-bold">
-                                                <li class="unit-id">PAIR</li> 
-                                            </ul>
-                                        </div>
-                                        <div class="col-md-4 mb-4">
-                                            <h5 class="product-meta-title ">Product Name</h5>
-                                            <ul class="text-dark fw-bold">
-                                                <li class="product-name">SILVER JEWELLERY STONE STUD DROP</li> 
-                                            </ul>
-                                        </div>
-                                       
-                                      
-                                    </div>
-                            
-
-                                
                                     <div>
                                         <h5 class="product-meta-title me-2">Size</h5>
                                         <div class="d-flex gap-2 mb-4">
-                                            <div class="size-box active" onclick="selectSize(this, 1)">
-                                                option 1
-                                            </div>
-                                            <div class="size-box" onclick="selectSize(this, 2)">
-                                                option 2
-
-                                            </div>
-                                            <div class="size-box" onclick="selectSize(this,3)">
-                                                option 3
-                                            </div>
-                                            <div class="size-box" onclick="selectSize(this,4)">
-                                                option 4
-                                            </div>
+                                            <div class="size-box active" onclick="selectSize(this, 1)">1</div>
+                                            <div class="size-box" onclick="selectSize(this, 2)">2</div>
+                                            <div class="size-box" onclick="selectSize(this,3)">3</div>
+                                            <div class="size-box" onclick="selectSize(this,4)">4</div>
                                         </div>
                                     </div>
 
@@ -307,15 +214,13 @@
 
                                    <div class="col-3">
                                     <h5 class="product-meta-title me-2">STYLE</h5>
-                                    <select class="variant-dropdown">
+                                    <select class="variant-dropdown" id="selected-style">
                                         <option value="" selected>Select a variant</option>
                                     </select>
                                    </div>
                                     
             
                                   
-                                    <!-- <p class="description mb--40">In ornare lorem ut est dapibus, ut tincidunt nisi pretium. Integer ante est, hendrerit in rutrum quis, elementum eget magna. Pellentesque sagittis dictum libero, eu dignissim tellus.</p> -->
-
                                     <div class="product-quantity mt-5 mb-4 d-flex gap-2" data-title="Qty">
                                         <label class="label-title fw-bold">Quantity:</label>
                                         <div class="pro-qty d-flex">
@@ -323,19 +228,106 @@
                                         </div>
                                     </div>
 
+
                                     <!-- Start Product Action Wrapper  -->
-                                    <div class="product-action-wrapper d-flex-center">
+                                    <div class="col-12 col-sm-6">
 
-                                        <!-- Start Product Action  -->
-                                        
-
-                                        <ul class="product-action action-style-two d-flex-center mb--0">
                                             <button id="add-to-cart-button" class="axil-btn btn-bg-primary mt-4">Add to Cart</button>
-                                        </ul>
-                                        <!-- End Product Action  -->
 
                                     </div>
                                     <!-- End Product Action Wrapper  -->
+                                    <div class="row mt-5">
+
+                                        <div class="col-sm-6 col-md-4  mb-4">
+                                            <h5 class="product-meta-title ">Gross Weight</h5>
+                                            <ul class="text-dark fw-bold">
+                                                <li class="gross-weight">7.48 GMS</li> 
+                                            </ul>
+                                        </div>
+
+                                  
+
+
+                                        <div class="col-sm-6 col-md-4  mb-4">
+                                            <h5 class="product-meta-title ">Project</h5>
+                                            <ul class="text-dark fw-bold">
+                                                <li class="project">SIL CASTING</li> 
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-6 col-md-4  mb-4">
+                                            <h5 class="product-meta-title ">Category</h5>
+                                            <ul class="text-dark fw-bold">
+                                                <li class="category">STUD</li> 
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-6 col-md-4  mb-4">
+                                            <h5 class="product-meta-title ">Sub-Category</h5>
+                                            <ul class="text-dark fw-bold">
+                                                <li class="sub-category">STUD DROPS</li> 
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-6 col-md-4  mb-4">
+                                            <h5 class="product-meta-title ">Collections</h5>
+                                            <ul class="text-dark fw-bold">
+                                                <li class="collections">FANCY</li> 
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-6 col-md-4  mb-4">
+                                            <h5 class="product-meta-title ">Sub-Collections</h5>
+                                            <ul class="text-dark fw-bold">
+                                                <li class="sub-collections">PEARL COLLECTION</li> 
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-6 col-md-4  mb-4">
+                                            <h5 class="product-meta-title ">Purity</h5>
+                                            <ul class="text-dark fw-bold">
+                                                <li class="default-Carat">SIL-92.5</li> 
+                                            </ul>
+                                        </div>
+
+                                        <div class="col-sm-6 col-md-4  mb-4">
+                                            <h5 class="product-meta-title">Color</h5>
+                                            <ul class="text-dark fw-bold">
+                                                <li class=" default-color">W</li> 
+                                            </ul>
+                                        </div>
+
+
+                                        <div class="col-sm-6 col-md-4  mb-4">
+                                            <h5 class="product-meta-title">Height</h5>
+                                            <ul class="text-dark fw-bold">
+                                                <li class="height">7</li> 
+                                            </ul>
+                                        </div>
+
+                                        <div class="col-sm-6 col-md-4  mb-4">
+                                            <h5 class="product-meta-title">Width</h5>
+                                            <ul class="text-dark fw-bold">
+                                                <li class="width">7</li> 
+                                            </ul>
+                                        </div>
+
+                                        <div class="col-sm-6 col-md-4  mb-4">
+                                            <h5 class="product-meta-title">Unit ID</h5>
+                                            <ul class="text-dark fw-bold">
+                                                <li class="unit-id">PAIR</li> 
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-6 col-md-4  mb-4">
+                                            <h5 class="product-meta-title ">Product Name</h5>
+                                            <ul class="text-dark fw-bold">
+                                                <li class="product-name">SILVER JEWELLERY STONE STUD DROP</li> 
+                                            </ul>
+                                        </div>
+                                       
+                                      
+                                    </div>
+                            
+
+                                
+                               
+
+
                                 </div>
                             </div>
                         </div>
@@ -676,12 +668,12 @@ loadJSONFile(jsonData => {
 
     // Retrieve the quantity from local storage and set it as the initial value
     const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
-    const existingCartItem = cartItems.find(item => item.productID === productID);
-    if (existingCartItem) {
-        quantityInput.value = existingCartItem.quantity;
-    } else {
-        quantityInput.value = 1; // Default to 1 if not in the cart
-    }
+    // const existingCartItem = cartItems.find(item => item.productID === productID);
+    // if (existingCartItem) {
+    //     quantityInput.value = existingCartItem.quantity;
+    // } else {
+    //     quantityInput.value = 1; // Default to 1 if not in the cart
+    // }
 
     incrementBtn.addEventListener("click", () => {
         quantityInput.value = parseInt(quantityInput.value) + 1;
@@ -696,34 +688,37 @@ loadJSONFile(jsonData => {
     // Add to Cart Button Functionality
     const addToCartButton = document.getElementById("add-to-cart-button");
     addToCartButton.addEventListener("click", () => {
+        const productDiv = document.querySelector(".axil-single-product-area");
+
         const quantity = parseInt(quantityInput.value);
+        const selectedSize = getSelectedSize(productDiv);
+    const selectedStyle = getSelectedStyle(productDiv);
+
+  
+  // Generate a unique identifier for the variant
+  const variantID = `${productID}-${selectedSize}-${selectedStyle}`;
 
         if (quantity >= 1) { // Ensure quantity is at least 1
-            // Get the cart items from local storage
-            const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+            let cartItems = localStorage.getItem("cartItems");
+  cartItems = cartItems ? JSON.parse(cartItems) : [];
 
-            // Check if the product already exists in the cart
-            const existingCartItem = cartItems.find(item => item.productID === productID);
+  // Check if the variant is already in the cart
+  const existingVariant = cartItems.find(item => item.variantID === variantID);
 
-            if (existingCartItem) {
-                // If the product exists, update the quantity
-                existingCartItem.quantity += quantity;
-            } else {
-                // If the product does not exist, add it to the cart
-                cartItems.push({
-                    productID,
-                    quantity
-                });
-            }
+  if (existingVariant) {
+    // If the variant is already in the cart, update the quantity
+    existingVariant.quantity += quantity;
+  } else {
+    // If the variant is not in the cart, add it as a new item
+    cartItems.push({ productID, variantID, quantity, size: selectedSize, style: selectedStyle });
+  }
 
-            // Save the updated cart items to local storage
-            localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  // Update local storage with the new cart items
+  localStorage.setItem("cartItems", JSON.stringify(cartItems));
 
-            const addToCartButton = document.getElementById("add-to-cart-button");
-
-            // Change the button text to "Adding" for 2 seconds
-            addToCartButton.textContent = "Adding....";
-            addToCartButton.disabled = true;
+  // Disable the button during the "Adding" state
+  addToCartButton.disabled = true;
+  addToCartButton.textContent = "Adding...";
 
             setTimeout(() => {
                 addToCartButton.textContent = "Add to Cart";
@@ -738,7 +733,29 @@ loadJSONFile(jsonData => {
     });
 });
 
+function getSelectedSize(productDiv) {
+  // Find the selected size box within the product card
+  const selectedSizeBox = productDiv.querySelector('.size-box.active');
 
+  if (selectedSizeBox) {
+    return selectedSizeBox.textContent.trim();
+  }
+
+  // Return a default value if no size is selected
+  return "";
+}
+
+function getSelectedStyle(productDiv) {
+  // Find the selected style from the dropdown within the product card
+  const styleSelect = productDiv.querySelector(".variant-dropdown");
+
+  if (styleSelect) {
+    return styleSelect.value;
+  }
+
+  // Return a default value if no style is selected
+  return "";
+}
 
 
 

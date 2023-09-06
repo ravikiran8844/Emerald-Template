@@ -67,6 +67,21 @@
         background-color: #0d6efd;
         color: #fff;
     }
+
+          /* Custom CSS to style the size options */
+          .size-box {
+            border: 2px solid #ccc;
+            padding: 10px;
+            margin-right: 10px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .size-box.active {
+            background-color: #007bff; /* Highlight active box with blue background */
+            color: #fff; /* Text color on active box */
+            border-color: #007bff; /* Border color on active box */
+        }
 </style>
 </head>
 
@@ -801,7 +816,7 @@ $('#project-dropdown-7').select2({
     const productDiv = document.createElement("div");
     productDiv.innerHTML = `
         <div class="">
-                                <div class="axil-product product-style-one mb--30">
+                                <div class="axil-product product-style-one mb--30" data-product-id="${productID}">
                                     <div class="thumbnail">
                                         <a href="product.html?productID=${productID}">
                                             <img src="assets/img/${productID}-L.jpg" alt="Product Images">
@@ -812,7 +827,26 @@ $('#project-dropdown-7').select2({
                                     <div class="product-content">
                                         <div class="inner">
                                             <div class="fs-2"><a href="product.html?productID=${product.productID}">${product.productID}</a></div>
-                                            <div>${product.weight} Gms</div>
+                                            <div class="mb-4">${product.weight} Gms</div>
+
+                                            <div>
+                                        <h5 class="product-meta-title me-2">Size</h5>
+                                        <div class="d-flex gap-2 justify-content-center mb-4">
+                                            <div class="size-box active" onclick="selectSize(this,'${productID}', 1)">
+                                                1
+                                            </div>
+                                            <div class="size-box" onclick="selectSize(this,'${productID}', 2)">
+                                                2
+
+                                            </div>
+                                            <div class="size-box" onclick="selectSize(this,'${productID}',3)">
+                                                3
+                                            </div>
+                                            <div class="size-box" onclick="selectSize(this,'${productID}',4)">
+                                                4
+                                            </div>
+                                        </div>
+                                    </div>
 
                                             <div class="d-flex gap-2 mt-4">
                                                 <label class="label-title fw-bold">STYLE:</label>
@@ -958,13 +992,34 @@ loadJSONFile(jsonData => {
 
 
 
-
-
 function addToCartClicked(event) {
   const button = event.target;
   const productDiv = button.closest(".axil-product");
   const productID = productDiv.querySelector(".fs-2 a").textContent;
   const quantity = parseInt(productDiv.querySelector(".quantity-input").value);
+  const selectedSize = getSelectedSize(productDiv);
+  const selectedStyle = getSelectedStyle(productDiv);
+
+  // Generate a unique identifier for the variant
+  const variantID = `${productID}-${selectedSize}-${selectedStyle}`;
+
+  // Retrieve existing cart items from local storage
+  let cartItems = localStorage.getItem("cartItems");
+  cartItems = cartItems ? JSON.parse(cartItems) : [];
+
+  // Check if the variant is already in the cart
+  const existingVariant = cartItems.find(item => item.variantID === variantID);
+
+  if (existingVariant) {
+    // If the variant is already in the cart, update the quantity
+    existingVariant.quantity += quantity;
+  } else {
+    // If the variant is not in the cart, add it as a new item
+    cartItems.push({ productID, variantID, quantity, size: selectedSize, style: selectedStyle });
+  }
+
+  // Update local storage with the new cart items
+  localStorage.setItem("cartItems", JSON.stringify(cartItems));
 
   // Disable the button during the "Adding" state
   button.disabled = true;
@@ -975,21 +1030,30 @@ function addToCartClicked(event) {
     button.disabled = false;
     button.textContent = "Add to Cart";
   }, 2000); // Adjust the time delay (in milliseconds) as needed
+}
 
-  // Retrieve existing cart items from local storage
-  let cartItems = localStorage.getItem("cartItems");
-  cartItems = cartItems ? JSON.parse(cartItems) : [];
+function getSelectedSize(productDiv) {
+  // Find the selected size box within the product card
+  const selectedSizeBox = productDiv.querySelector('.size-box.active');
 
-  // Check if the product is already in the cart
-  const existingCartItem = cartItems.find(item => item.productID === productID);
-  if (existingCartItem) {
-    existingCartItem.quantity += quantity;
-  } else {
-    cartItems.push({ productID, quantity });
+  if (selectedSizeBox) {
+    return selectedSizeBox.textContent.trim();
   }
 
-  // Update local storage with the new cart items
-  localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  // Return a default value if no size is selected
+  return "";
+}
+
+function getSelectedStyle(productDiv) {
+  // Find the selected style from the dropdown within the product card
+  const styleSelect = productDiv.querySelector(".single-select.item-style-select");
+
+  if (styleSelect) {
+    return styleSelect.value;
+  }
+
+  // Return a default value if no style is selected
+  return "";
 }
 
 
@@ -1115,10 +1179,11 @@ console.log(filteredProducts);
 
   for (let i = startIndex; i < endIndex; i++) {
     const product = filteredProducts[i];
+    const productID = product.productID.trim();
     const productDiv = document.createElement("div");
     productDiv.innerHTML = `
       <div class="">
-        <div class="axil-product product-style-one mb--30">
+        <div class="axil-product product-style-one mb--30" data-product-id="${productID}">
           <div class="thumbnail">
             <a href="product.html?productID=${product.productID}">
               <img src="assets/img/${product.productID}-L.jpg" alt="Product Images">
@@ -1127,7 +1192,26 @@ console.log(filteredProducts);
           <div class="product-content">
             <div class="inner">
               <div class="fs-2"><a href="product.html?productID=${product.productID}">${product.productID}</a></div>
-              <div>${product.weight} Gms</div>
+              <div class="mb-4">${product.weight} Gms</div>
+
+              <div>
+                                        <h5 class="product-meta-title me-2">Size</h5>
+                                        <div class="d-flex gap-2 justify-content-center mb-4">
+                                            <div class="size-box active" onclick="selectSize(this,'${productID}', 1)">
+                                                1
+                                            </div>
+                                            <div class="size-box" onclick="selectSize(this,'${productID}', 2)">
+                                                2
+
+                                            </div>
+                                            <div class="size-box" onclick="selectSize(this,'${productID}',3)">
+                                                3
+                                            </div>
+                                            <div class="size-box" onclick="selectSize(this,'${productID}',4)">
+                                                4
+                                            </div>
+                                        </div>
+                                    </div>
 
               <div class="d-flex gap-2 mt-4">
                 <label class="label-title fw-bold">STYLE:</label>
@@ -1190,6 +1274,26 @@ document.getElementById("resetFiltersButton").addEventListener("click", function
     setupQuantityInputs();
   });
 });
+
+
+
+
+function selectSize(sizeBox, productID, size) {
+    // Find the product card container based on the product ID
+    const productCard = document.querySelector(`.axil-product[data-product-id="${productID}"]`);
+
+    // Remove 'active' class from all size boxes within the product card
+    const sizeBoxes = productCard.querySelectorAll('.size-box');
+    sizeBoxes.forEach(box => box.classList.remove('active'));
+
+    // Add 'active' class to the selected size box
+    sizeBox.classList.add('active');
+
+    // Update the selected size for the specific product card
+    // You can store this information in a data attribute or variable
+}
+
+
 
     </script>
     

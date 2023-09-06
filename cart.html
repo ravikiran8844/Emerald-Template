@@ -327,18 +327,15 @@
     </script>
 
 
-
 <script>
     // Get the cart items from local storage
     const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
     const cartContainer = document.getElementById("cart-items-container");
     const checkoutButton = document.getElementById("checkout-btn");
 
-
     if (cartItems.length === 0) {
         cartContainer.innerHTML = "<p>No products added to cart.</p>";
         checkoutButton.style.display = "none"; // Hide the checkout button
-
     } else {
         cartItems.forEach(item => {
             const cartItemDiv = document.createElement("div");
@@ -346,12 +343,16 @@
             cartItemDiv.innerHTML = `
                 <div class="axil-product">
                     <a href="product.html?productID=${item.productID.trim()}">
-                    <img src="assets/img/${item.productID.trim()}-L.jpg" alt="Product Images">
+                        <img src="assets/img/${item.productID.trim()}-L.jpg" alt="Product Images">
                     </a>
                     <div class="d-flex flex-column align-items-center">
                         <a href="product.html?productID=${item.productID.trim()}">
-                        <div class="fs-3 fw-bold my-3">${item.productID}</div>
-                    </a>
+                            <div class="fs-3 fw-bold my-3">${item.productID}</div>
+                        </a>
+                        <div class="item-style-size mb-4">
+                            <div><span class="h6">Size:</span> ${item.size}</div>
+                            <div><span class="h6">Style:</span> ${item.style}</div>
+                        </div>
                         <div class="product-quantity" data-title="Qty">
                             <div class="pro-qty d-flex">
                                 <button class="quantity-change-btn minus">-</button>
@@ -359,6 +360,7 @@
                                 <button class="quantity-change-btn plus">+</button>
                             </div>
                         </div>
+                       
                         <div>
                             <button class="btn btn-primary update-quantity-btn mt-4">Update Quantity</button>
                             <button class="btn btn-danger remove-item-btn mt-2">Remove</button>
@@ -367,55 +369,44 @@
                 </div>
             `;
             cartContainer.appendChild(cartItemDiv);
-    
+
             const quantityInput = cartItemDiv.querySelector(".quantity-input");
             const plusBtn = cartItemDiv.querySelector(".plus");
             const minusBtn = cartItemDiv.querySelector(".minus");
             const updateQuantityBtn = cartItemDiv.querySelector(".update-quantity-btn");
-    
+
             plusBtn.addEventListener("click", () => {
                 quantityInput.value = parseInt(quantityInput.value) + 1;
             });
-    
+
             minusBtn.addEventListener("click", () => {
                 if (parseInt(quantityInput.value) > 1) {
                     quantityInput.value = parseInt(quantityInput.value) - 1;
                 }
             });
-    
-
-
-            // Check if cartItems array is empty and hide the checkout button
-
 
             const removeItemBtn = cartItemDiv.querySelector(".remove-item-btn");
 
             removeItemBtn.addEventListener("click", () => {
-                // Find the index of the item to remove
                 const indexToRemove = cartItems.findIndex(cartItem => cartItem.productID === item.productID);
 
                 if (indexToRemove !== -1) {
-                    // Remove the item from the cartItems array
                     cartItems.splice(indexToRemove, 1);
-
-                    // Update local storage with the updated cart items
                     localStorage.setItem("cartItems", JSON.stringify(cartItems));
-
-                    // Remove the cart item from the DOM
                     cartContainer.removeChild(cartItemDiv);
-
                     alert("Item removed from cart!");
                 }
-                if (cartItems.length === 0) {
-                        cartContainer.innerHTML = "<p>No products added to cart.</p>";
-                        checkoutButton.style.display = "none"; // Hide the checkout button
 
-                    }
+                if (cartItems.length === 0) {
+                    cartContainer.innerHTML = "<p>No products added to cart.</p>";
+                    checkoutButton.style.display = "none"; // Hide the checkout button
+                }
             });
 
             updateQuantityBtn.addEventListener("click", () => {
                 const newQuantity = parseInt(quantityInput.value);
                 const index = cartItems.findIndex(cartItem => cartItem.productID === item.productID);
+
                 if (index !== -1) {
                     cartItems[index].quantity = newQuantity;
                     localStorage.setItem("cartItems", JSON.stringify(cartItems));
@@ -424,7 +415,8 @@
             });
         });
     }
-    </script>
+</script>
+
     
 </body>
 
