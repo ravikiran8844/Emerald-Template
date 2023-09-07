@@ -29,6 +29,9 @@
     <link rel="stylesheet" href="assets/css/style.min.css">
 
 
+
+
+
     <style>
          /* Custom CSS to style the size options */
          .size-box {
@@ -44,6 +47,7 @@
             color: #fff; /* Text color on active box */
             border-color: #007bff; /* Border color on active box */
         }
+
     </style>
 
 </head>
@@ -149,11 +153,27 @@
                         <div class="col-lg-6 mb--40">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <div class="product-large-thumbnail-2 single-product-thumbnail axil-product slick-layout-wrapper--15 axil-slick-arrow arrow-both-side-3">
-                                        <div class="thumbnail">
-                                            <img class="product-image" src="assets/images/product/jewellery/product1.png" alt="Product Images">
+
+
+
+                                    <div class="axil-product">
+<!-- 
+                                        <div class="">
+                                            <img class="product-image img-fluid" src="assets/images/product/jewellery/product1.png" alt="Product Images"  >
+                                        </div> -->
+
+
+
+
+                                        <div class="easyzoom easyzoom--overlay">
+                                            <a id="product-image-overlay" href="">
+                                                <img class="product-image img-fluid" src="" alt="" />
+                                            </a>
                                         </div>
+                                        
                                     </div>
+
+
                                 </div>
                                 <!-- <div class="col-lg-12">
                                     <div class="small-thumb-wrapper product-small-thumb-2 small-thumb-style-two small-thumb-style-three">
@@ -574,11 +594,20 @@
 
     <!-- Main JS -->
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/vendor/extm.js"></script>
+
+
 
 
     <!-- single-product.html -->
 
 <!-- single-product.html -->
+<script>
+      $('.product-image').extm({
+    position:'overlay'
+  });
+</script>
+
 
 <script>
     function loadJSONFile(callback) {
@@ -610,9 +639,17 @@
             const unitID = document.querySelector(".unit-id");
             const productName = document.querySelector(".product-name");
             const productImage = document.querySelector(".product-image");
+            const productImageOverlay = document.getElementById("product-image-overlay");
+
             const heightEl = document.querySelector(".height");
             const widthEl = document.querySelector(".width");
             productImage.src = `assets/img/${product.productID}-L.jpg`;
+            productImageOverlay.href = `assets/img/${product.productID}-L.jpg`;
+
+
+
+            
+            // productImage.setAttribute('data-largesrc', `assets/img/${product.productID}-L.jpg`);
 
             // Populate the elements with the product data
             productTitle.textContent = product.productID;
@@ -773,15 +810,14 @@ function selectSize(element, size) {
 
 </script>
 
-    
-    
-    
-    
 
-    
+
+
+
+
+
+
 
 </body>
 
-
-<!-- Mirrored from new.axilthemes.com/demo/template/etrade/single-product-5.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 01 Aug 2023 06:01:02 GMT -->
 </html>
