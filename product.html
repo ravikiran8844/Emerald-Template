@@ -166,9 +166,9 @@
 
 
                                         <div class="easyzoom easyzoom--overlay">
-                                            <a id="product-image-overlay" href="">
+                                            <!-- <a id="product-image-overlay" href=""> -->
                                                 <img class="product-image img-fluid" src="" alt="" />
-                                            </a>
+                                            <!-- </a> -->
                                         </div>
                                         
                                     </div>
@@ -604,7 +604,8 @@
 <!-- single-product.html -->
 <script>
       $('.product-image').extm({
-    position:'overlay'
+    position:'overlay',
+    squareOverlay:true
   });
 </script>
 
@@ -639,12 +640,12 @@
             const unitID = document.querySelector(".unit-id");
             const productName = document.querySelector(".product-name");
             const productImage = document.querySelector(".product-image");
-            const productImageOverlay = document.getElementById("product-image-overlay");
+            // const productImageOverlay = document.getElementById("product-image-overlay");
 
             const heightEl = document.querySelector(".height");
             const widthEl = document.querySelector(".width");
             productImage.src = `assets/img/${product.productID}-L.jpg`;
-            productImageOverlay.href = `assets/img/${product.productID}-L.jpg`;
+            // productImageOverlay.href = `assets/img/${product.productID}-L.jpg`;
 
 
 
