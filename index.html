@@ -830,22 +830,20 @@ $('#project-dropdown-7').select2({
                                             <div class="mb-4">${product.weight} Gms</div>
 
                                             <div>
-                                        <h5 class="product-meta-title me-2">Size</h5>
-                                        <div class="d-flex gap-2 justify-content-center mb-4">
-                                            <div class="size-box active" onclick="selectSize(this,'${productID}', 1)">
-                                                1
-                                            </div>
-                                            <div class="size-box" onclick="selectSize(this,'${productID}', 2)">
-                                                2
 
+                                                <div class="d-flex gap-2 mt-4">
+                                                <label class="label-title fw-bold">Size:</label>
+                                                <select class="single-select size-dropdown">
+                                                <option selected value="1">1</option>
+                                                <option value="2">2</option>
+
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+
+                                            </select>
                                             </div>
-                                            <div class="size-box" onclick="selectSize(this,'${productID}',3)">
-                                                3
-                                            </div>
-                                            <div class="size-box" onclick="selectSize(this,'${productID}',4)">
-                                                4
-                                            </div>
-                                        </div>
+
+                
                                     </div>
 
                                             <div class="d-flex gap-2 mt-4">
@@ -998,12 +996,12 @@ function addToCartClicked(event) {
   const productDiv = button.closest(".axil-product");
   const productID = productDiv.querySelector(".fs-2 a").textContent;
   const quantity = parseInt(productDiv.querySelector(".quantity-input").value);
-  const selectedSize = getSelectedSize(productDiv);
+  const selectedSize = getSelectedSize(productID);
   const selectedStyle = getSelectedStyle(productDiv);
 
   // Generate a unique identifier for the variant
   const variantID = `${productID}-${selectedSize}-${selectedStyle}`;
-
+console.log(variantID);
   // Retrieve existing cart items from local storage
   let cartItems = localStorage.getItem("cartItems");
   cartItems = cartItems ? JSON.parse(cartItems) : [];
@@ -1196,23 +1194,21 @@ console.log(filteredProducts);
               <div class="mb-4">${product.weight} Gms</div>
 
               <div>
-                                        <h5 class="product-meta-title me-2">Size</h5>
-                                        <div class="d-flex gap-2 justify-content-center mb-4">
-                                            <div class="size-box active" onclick="selectSize(this,'${productID}', 1)">
-                                                1
-                                            </div>
-                                            <div class="size-box" onclick="selectSize(this,'${productID}', 2)">
-                                                2
+                <div>
 
-                                            </div>
-                                            <div class="size-box" onclick="selectSize(this,'${productID}',3)">
-                                                3
-                                            </div>
-                                            <div class="size-box" onclick="selectSize(this,'${productID}',4)">
-                                                4
-                                            </div>
-                                        </div>
-                                    </div>
+                <div class="d-flex gap-2 mt-4">
+                <label class="label-title fw-bold">Size:</label>
+                <select class="single-select size-dropdown">
+                <option selected value="1">1</option>
+                <option value="2">2</option>
+
+                <option value="3">3</option>
+                <option value="4">4</option>
+
+                </select>
+                </div>
+                                       
+            </div>
 
               <div class="d-flex gap-2 mt-4">
                 <label class="label-title fw-bold">STYLE:</label>
@@ -1279,19 +1275,16 @@ document.getElementById("resetFiltersButton").addEventListener("click", function
 
 
 
-function selectSize(sizeBox, productID, size) {
+function getSelectedSize(productID) {
     // Find the product card container based on the product ID
     const productCard = document.querySelector(`.axil-product[data-product-id="${productID}"]`);
 
-    // Remove 'active' class from all size boxes within the product card
-    const sizeBoxes = productCard.querySelectorAll('.size-box');
-    sizeBoxes.forEach(box => box.classList.remove('active'));
-
-    // Add 'active' class to the selected size box
-    sizeBox.classList.add('active');
-
-    // Update the selected size for the specific product card
-    // You can store this information in a data attribute or variable
+  // Find the selected style from the dropdown within the product card
+  const selectedSize = productCard.querySelector(".single-select.size-dropdown").value;
+  if (selectedSize) {
+    return selectedSize;
+  }
+  return "";
 }
 
 

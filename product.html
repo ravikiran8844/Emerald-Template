@@ -216,13 +216,24 @@
 
 
 
-                                    <div>
+                                    <div class="col-5">
                                         <h5 class="product-meta-title me-2">Size</h5>
-                                        <div class="d-flex gap-2 mb-4">
-                                            <div class="size-box active" onclick="selectSize(this, 1)">1</div>
+                                        <div class="mb-4">
+
+                                            <select class="size-dropdown" id="selected-size">
+                                                <option value="" selected>Select Size</option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+
+                                            </select>
+
+                                            <!-- <div class="size-box active" onclick="selectSize(this, 1)">1</div>
                                             <div class="size-box" onclick="selectSize(this, 2)">2</div>
                                             <div class="size-box" onclick="selectSize(this,3)">3</div>
-                                            <div class="size-box" onclick="selectSize(this,4)">4</div>
+                                            <div class="size-box" onclick="selectSize(this,4)">4</div> -->
                                         </div>
                                     </div>
 
@@ -232,7 +243,7 @@
 
 
 
-                                   <div class="col-3">
+                                   <div class="col-5">
                                     <h5 class="product-meta-title me-2">STYLE</h5>
                                     <select class="variant-dropdown" id="selected-style">
                                         <option value="" selected>Select a variant</option>
@@ -773,10 +784,11 @@ loadJSONFile(jsonData => {
 
 function getSelectedSize(productDiv) {
   // Find the selected size box within the product card
-  const selectedSizeBox = productDiv.querySelector('.size-box.active');
-
-  if (selectedSizeBox) {
-    return selectedSizeBox.textContent.trim();
+  const selectedSizeEl = document.querySelector('#selected-size');
+  const selectedSize=selectedSizeEl.value;
+console.log(selectedSize);
+  if (selectedSize) {
+    return selectedSize;
   }
 
   // Return a default value if no size is selected
